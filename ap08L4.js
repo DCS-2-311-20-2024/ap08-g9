@@ -19,6 +19,7 @@ let course;
 export const origin = new THREE.Vector3();
 export const controlPoints = [
     [-50, 20],
+    [10,10],
     [ 25,-40]
 ]
 export function init(scene, size, id, offset, texture) {
@@ -48,7 +49,32 @@ export function init(scene, size, id, offset, texture) {
     // ビル
 
     // コース(描画)
+    course = new THREE.CatmullRomCurve3(
+        controlPoints.map((p) =>  {
+            return (new THREE.Vector3()).set(
+                offset.x + p[0],
+                0,
+                offset.z + p[1]
+            );
+        }),false
+    )
 
+    const points = course.getPoints(100);
+    points.forEach((point) => {
+        const road = new THREE.Mesh(
+            new THREE.CircleGeometry(5,16),
+            new THREE.MeshLambertMaterial({
+                color: "gray",
+            })
+        )
+        road.rotateX(-Math.PI/2);
+        road.position.set(
+            point.x,
+            0,
+            point.z
+        );
+        scene.add(road);
+    });
 }
 
 // コース(自動運転用)
@@ -62,6 +88,10 @@ export function getCamera() {
 
 // 車の設定
 export function setCar(scene, car) {
+    const SCALE = 0.01;
+    car.position.copy(origin);
+    car.scale.set(SCALE,SCALE,SCALE);
+    scene.add(car);
 }
 
 // Windowサイズの変更処理
