@@ -70,7 +70,7 @@ export function init(scene, size, id, offset, texture) {
             geometry,
             material
         )
-        bldg.position.set(x, bldgH / 2, z);
+        bldg.position.set(offset.x + x, bldgH / 2, offset.z + z);
         scene.add(bldg);
     }
     makeBuilding(20, 20, 4);
