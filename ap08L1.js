@@ -22,6 +22,9 @@ export const controlPoints = [
     [ 15, 20],
     [ 0, 10],
     [ 40,-25],
+    [-47,-19],
+    [-48,-20],
+    [-49,-19],
     [-50,-20]
 ]
 export function init(scene, size, id, offset, texture) {
