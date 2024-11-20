@@ -20,6 +20,7 @@ export const origin = new THREE.Vector3();
 export const controlPoints = [
     [ 25, 40],
     [ 15, 20],
+    [ 0, 10],
     [ 40,-25],
     [-50,-20]
 ]
