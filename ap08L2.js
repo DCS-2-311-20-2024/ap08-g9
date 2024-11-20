@@ -19,6 +19,8 @@ let course;
 export const origin = new THREE.Vector3();
 export const controlPoints = [
     [ 50,-20],
+    [ 30,-20],
+    [-10,  0],
     [-25, 40]
 ]
 export function init(scene, size, id, offset, texture) {
@@ -80,6 +82,22 @@ export function init(scene, size, id, offset, texture) {
 
 // コース(自動運転用)
 export function makeCourse(scene) {
+    const courseVectors = [];
+    const parts = [L2,L3,L4,L1];
+    parts.forEach((part) => {
+        part.controlPoints.forEach((p) => {
+            courseVectors.push(
+                new THREE.Vector3(
+                    p[0] + part.origin.x,
+                    0,
+                    p[1] + part.origin.z,
+                )
+            )
+        });
+    })
+    course = new THREE.CatmullRomCurve3(
+        courseVectors, true
+    )
 }
 
 // カメラを返す
@@ -107,7 +125,7 @@ const carPosition = new THREE.Vector3();
 const carTarget = new THREE.Vector3();
 export function render(scene, car) {
     const time = (clock.getElapsedTime() / 20);
-    car.getPointAt(time % 1, carPosition);
+    course.getPointAt(time % 1, carPosition);
     car.position.copy(carPosition);
     course.getPointAt((time + 0.01) %1, carTarget);
     car.lookAt(carTarget);
