@@ -71,10 +71,10 @@ export function init(scene, size, id, offset, texture) {
             geometry,
             material
         )
-        bldg.position.set( -50, 10, 40);
+        bldg.position.set( offset.x + x, bldgH/2, offset.z + z);
         scene.add(bldg);
     }
-    makeBuilding(20,20,4)
+    makeBuilding(-30,20,2);
 
     // コース(描画)
     // 制御点を補間して曲線を作る
