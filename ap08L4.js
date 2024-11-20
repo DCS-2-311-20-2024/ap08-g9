@@ -52,25 +52,25 @@ export function init(scene, size, id, offset, texture) {
         const bldgH = height[type] * 5;
         const geometry = new THREE.BoxGeometry(8, bldgH, 8);
         const material = new THREE.MeshLambertMaterial({ map: texture });
-        const sideUvS = (type*2+1)/11;
-        const sideUvE = (type*2+2)/11;
-        const topUvS = (type*2+2)/11;
-        const topUvE = (type*2+3)/11;
+        const sideUvS = (type * 2 + 1) / 11;
+        const sideUvE = (type * 2 + 2) / 11;
+        const topUvS = (type * 2 + 2) / 11;
+        const topUvE = (type * 2 + 3) / 11;
         const uvs = geometry.getAttribute("uv");
-        for(let i = 0;i<48;i+=4){
-            if(i < 16 || i > 22){
+        for (let i = 0; i < 48; i += 4) {
+            if (i < 16 || i > 22) {
                 uvs.array[i] = sideUvS;
-                uvs.array[i+2] = sideUvE;
-            }else {
+                uvs.array[i + 2] = sideUvE;
+            } else {
                 uvs.array[i] = topUvS;
-                uvs.array[i+2] = topUvE;
+                uvs.array[i + 2] = topUvE;
             }
         }
         const bldg = new THREE.Mesh(
             geometry,
             material
         )
-        bldg.position.set(0, 0, 3);
+        bldg.position.set(20, 0, 20);
         scene.add(bldg);
     }
     makeBuilding(20, 20, 0);
