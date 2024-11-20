@@ -121,6 +121,7 @@ export function makeCourse(scene) {
             )
         })
     })
+    courseVectors.reverse();
     course = new THREE.CatmullRomCurve3(
         courseVectors, true
     )
