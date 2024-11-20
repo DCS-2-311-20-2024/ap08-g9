@@ -20,6 +20,7 @@ export const origin = new THREE.Vector3();
 export const controlPoints = [
     [-25,-40],
     [-25,0],
+    [0,-5],
     [20,20],
     [ 50, 20]
 ]
@@ -75,6 +76,9 @@ export function init(scene, size, id, offset, texture) {
         scene.add(bldg);
     }
     makeBuilding(-30,20,2);
+    makeBuilding(-20,25,3);
+    makeBuilding(-5,30,0);
+    makeBuilding(-5,10,3);
 
     // コース(描画)
     // 制御点を補間して曲線を作る
